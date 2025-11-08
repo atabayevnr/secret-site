@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Secret Page</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="login-container" id="login">
+    <h2>🔒 Enter password</h2>
+    <input type="password" id="passwordInput" placeholder="Password">
+    <button onclick="checkPassword()">Enter</button>
+  </div>
+
+  <div id="content">
+    <h1>Welcome 🌙</h1>
+    <p>Some words from my heart...</p>
+    <video controls src="video1.mp4"></video>
+    <video controls src="video2.mp4"></video>
+    <p>End of the page 💫</p>
+  </div>
+
+  <script>
+    const correctPassword = "love123"; // 💡 Измени пароль тут
+
+    function checkPassword() {
+      const pass = document.getElementById("passwordInput").value;
+      if (pass === correctPassword) {
+        document.getElementById("login").style.display = "none";
+        const content = document.getElementById("content");
+        content.style.display = "block";
+        content.style.opacity = "1";
+      } else {
+        alert("Incorrect password ❌");
+      }
+    }
+  </script>
+</body>
+</html>
