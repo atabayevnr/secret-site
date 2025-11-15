@@ -196,75 +196,73 @@
   </div>
 
   <script>
-    const correctPassword = "2.9.25-13.12.25"; // 💡 пароль
+    <script>
+const correctPassword = "2.9.25-13.12.25"; 
 
-    const introLines = [
-      "> Daniya",
-      "> today is your birthday",
-      "> so I made this for you"
-    ];
+const introLines = [
+  "> Daniya",
+  "> today is your birthday",
+  "> so I made this for you"
+];
 
-    let currentLine = 0;
-    let currentChar = 0;
-    let typingSpeed = 70;    // скорость печати (меньше = быстрее)
-    let linePause = 700;     // пауза между строками
+let currentLine = 0;
+let currentChar = 0;
 
-    function checkPassword() {
-      const input = document.getElementById("passwordInput").value.trim();
-      const errorEl = document.getElementById("passwordError");
+function checkPassword() {
+  const input = document.getElementById("passwordInput").value.trim();
+  const errorEl = document.getElementById("passwordError");
 
-      if (input === correctPassword) {
-        errorEl.textContent = "";
-        // Переход к анимации
-        document.getElementById("password-gate").classList.add("hidden");
-        document.getElementById("intro-section").classList.remove("hidden");
-        startTypewriter();
-      } else {
-        errorEl.textContent = "Неверный пароль.";
-      }
+  if (input === correctPassword) {
+    errorEl.textContent = "";
+    
+    document.getElementById("password-gate").classList.add("hidden");
+    document.getElementById("intro-section").classList.remove("hidden");
+
+    startTypewriter();
+  } else {
+    errorEl.textContent = "Неверный пароль.";
+  }
+}
+
+function startTypewriter() {
+  const typewriterEl = document.getElementById("typewriter");
+
+  const fullText = introLines[currentLine];
+
+  if (currentChar <= fullText.length) {
+    typewriterEl.innerHTML =
+      introLines
+        .slice(0, currentLine)
+        .map(line => line + "<br>")
+        .join("") +
+      fullText.slice(0, currentChar);
+
+    currentChar++;
+    setTimeout(startTypewriter, 70);
+  } else {
+    currentLine++;
+    currentChar = 0;
+
+    if (currentLine < introLines.length) {
+      setTimeout(startTypewriter, 700);
+    } else {
+      setTimeout(() => {
+        document.getElementById("intro-section").classList.add("hidden");
+        document.getElementById("letter-section").classList.remove("hidden");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, 600);
     }
+  }
+}
 
-    function startTypewriter() {
-      const typewriterEl = document.getElementById("typewriter");
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && 
+     !document.getElementById("password-gate").classList.contains("hidden")) {
+    checkPassword();
+  }
+});
+</script>
 
-      if (currentLine >= introLines.length) {
-        // Завершилась анимация всех строк → показать письмо
-        setTimeout(() => {
-          document.getElementById("intro-section").classList.add("hidden");
-          document.getElementById("letter-section").classList.remove("hidden");
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }, 600);
-        return;
-      }
-
-      const fullText = introLines[currentLine];
-
-      if (currentChar <= fullText.length) {
-        typewriterEl.innerHTML =
-          introLines
-            .slice(0, currentLine)
-            .map(line => line + "<br>")
-            .join("") +
-          fullText.slice(0, currentChar);
-        currentChar++;
-        setTimeout(startTypewriter, typingSpeed);
-      } else {
-        // Строка напечатана целиком — переходим к следующей
-        currentLine++;
-        currentChar = 0;
-        setTimeout(startTypewriter, linePause);
-      }
-    }
-
-    // Enter по клавише
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        const gateVisible = !document.getElementById("password-gate").classList.contains("hidden");
-        if (gateVisible) {
-          checkPassword();
-        }
-      }
-    });
   </script>
 </body>
 </html>
