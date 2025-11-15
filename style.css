@@ -1,58 +1,266 @@
-body {
+/* Общие настройки */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background-color: #ffb6b9;
-  color: #fff;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: 'Homemade Apple', cursive;
+  background-color: #000; /* фон вокруг бумаги */
+  color: #222;
+}
+
+/* Контейнер для всех секций */
+.page-wrapper {
+  min-height: 100vh;
+}
+
+/* Прятать/показывать блоки */
+.hidden {
+  display: none;
+}
+
+/* Центровка для первого и второго экранов */
+.centered-section {
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  min-height: 350vh;
+  align-items: center;
 }
 
-h1, h2, p {
+/* === БЛОК ПАРОЛЯ === */
+
+.gate-card {
+  background: rgba(0, 0, 0, 0.85);
+  color: #f5f5f5;
+  padding: 28px 26px 30px;
+  border-radius: 18px;
+  max-width: 360px;
+  width: 90%;
   text-align: center;
+  box-shadow:
+    0 0 40px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
-.login-container {
-  text-align: center;
-  background: rgba(255,255,255,0.05);
-  padding: 40px;
+.gate-title {
+  margin: 0 0 8px;
+  font-size: 24px;
+}
+
+.gate-subtitle {
+  margin: 0 0 20px;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.gate-input {
+  width: 100%;
+  padding: 10px 12px;
   border-radius: 10px;
-  box-shadow: 0 0 20px rgba(255,255,255,0.1);
+  border: 1px solid #888;
+  background-color: #1c1c1c;
+  color: #f5f5f5;
+  margin-bottom: 12px;
+  font-family: inherit;
 }
 
-input[type="password"] {
-  padding: 10px;
-  border-radius: 5px;
+.gate-input::placeholder {
+  color: #888;
+}
+
+.gate-button {
+  width: 100%;
+  padding: 9px 0;
+  border-radius: 10px;
   border: none;
-  width: 200px;
+  background: linear-gradient(135deg, #ff7aa2, #ffb4d4);
+  color: #1b0b0e;
+  font-family: inherit;
+  font-size: 15px;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.gate-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.gate-error {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #ff9aa0;
+}
+
+/* === АНИМАЦИЯ ТЕРМИНАЛА === */
+
+.terminal-box {
+  background-color: #000;
+  color: #e4e4e4;
+  padding: 24px 20px;
+  max-width: 420px;
+  width: 90%;
+  border-radius: 14px;
+  font-family: "Courier New", monospace;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
+  position: relative;
+}
+
+.typewriter-text {
+  font-size: 15px;
+  line-height: 1.4;
+  min-height: 72px;
+}
+
+.cursor {
+  position: absolute;
+  width: 10px;
+  height: 18px;
+  background-color: #e4e4e4;
+  bottom: 18px;
+  left: 20px;
+  animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  50.01%, 100% {
+    opacity: 0;
+  }
+}
+
+/* === ПИСЬМО НА СТАРОЙ БУМАГЕ === */
+
+.letter-section {
+  padding: 40px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.paper-container {
+  background-color: #f0e4c3; /* цвет пожелтевшей бумаги */
+  max-width: 820px;
+  width: 90%;
+  min-height: 90vh;
+  margin: 30px auto;
+  padding: 36px 22px 40px;
+  position: relative;
+
+  /* Обгоревшие края */
+  box-shadow:
+    0 0 0 6px rgba(0, 0, 0, 0.85),
+    0 0 45px rgba(0, 0, 0, 1),
+    inset 0 0 35px rgba(0, 0, 0, 0.55);
+
+  background-image:
+    radial-gradient(circle at 0 0, rgba(0,0,0,0.3), transparent 55%),
+    radial-gradient(circle at 100% 0, rgba(0,0,0,0.3), transparent 55%),
+    radial-gradient(circle at 0 100%, rgba(0,0,0,0.28), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(0,0,0,0.28), transparent 55%);
+  background-blend-mode: multiply;
+}
+
+.letter-title {
   text-align: center;
+  margin: 0 0 20px;
+  font-size: 26px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.letter-body {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #372b1c;
+  white-space: pre-line;
+}
+
+.letter-body p {
+  margin: 0 0 14px;
+}
+
+.divider {
+  border: none;
+  border-top: 1px dashed rgba(0, 0, 0, 0.3);
+  margin: 16px 0 18px;
+}
+
+.inline-quote {
+  text-decoration: underline;
+  text-decoration-style: wavy;
+}
+
+.smile {
+  font-size: 0.96em;
+}
+
+.letter-sign {
+  margin-top: 20px;
+  text-align: right;
   font-size: 16px;
+}
+
+/* === СЕТКА ДЛЯ ВИДЕО === */
+
+.video-grid-title {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
   margin-top: 10px;
 }
 
-button {
-  margin-top: 15px;
-  padding: 10px 20px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  background-color: #ff3366;
-  color: #fff;
+.video-placeholder {
+  width: 100%;
+  padding-top: 56%; /* пропорции 16:9 */
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.4), transparent 60%),
+              radial-gradient(circle at 80% 80%, rgba(0,0,0,0.25), transparent 60%);
+  position: relative;
+  box-shadow:
+    inset 0 0 15px rgba(0, 0, 0, 0.4),
+    0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-#content {
-  display: none;
-  opacity: 0;
-  transition: opacity 1s;
+/* Можно добавить лёгкий намёк на рамку */
+.video-placeholder::after {
+  content: "";
+  position: absolute;
+  inset: 10%;
+  border: 1px dashed rgba(0, 0, 0, 0.25);
 }
 
-video {
-  width: 90%;
-  max-width: 480px;
-  margin: 20px 0;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(255,255,255,0.15);
+/* Адаптив */
+
+@media (max-width: 600px) {
+  .paper-container {
+    padding: 26px 16px 32px;
+    margin: 20px auto;
+  }
+
+  .letter-body {
+    font-size: 14px;
+  }
+
+  .letter-title {
+    font-size: 22px;
+  }
+
+  .video-grid {
+    gap: 10px;
+  }
 }
