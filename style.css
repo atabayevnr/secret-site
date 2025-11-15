@@ -1,3 +1,6 @@
+.hidden {
+  display: none;
+}
 /* Общие настройки */
 * {
   box-sizing: border-box;
