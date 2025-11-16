@@ -18,31 +18,27 @@
 <body>
   <div class="page-wrapper">
 
-   <!-- 1. АНИМАЦИЯ ТЕКСТА ПОСЛЕ ПАРОЛЯ -->
-    <section id="intro-section" class="centered-section hidden">
+    <!-- 1. ТЕРМИНАЛ-ПРИВЕТСТВИЕ (видно сразу) -->
+    <section id="welcome-terminal" class="centered-section">
       <div class="terminal-box">
-        <div id="typewriter" class="typewriter-text"></div>
-        <div class="cursor" id="cursor"></div>
+        <div id="welcome-typewriter" class="typewriter-text"></div>
+        <div class="cursor"></div>
       </div>
     </section>
 
-    <!-- 2. БЛОК С ПАРОЛЕМ -->
-    <section id="password-gate" class="centered-section">
+    <!-- 2. БЛОК С ПАРОЛЕМ (скрыт) -->
+    <section id="password-gate" class="centered-section hidden">
       <div class="gate-card">
-        
-        <p class="top-greeting">S tvoim dnem ❤️‍🔥</p>
 
-        <h1 class="gate-title">🔒 Secret access</h1>
+        <h1 class="gate-title">S tvoim dnem ❤️‍🔥</h1>
+        <h2 class="gate-title">🔒 Secret access</h2>
+
         <p class="gate-subtitle">Введите пароль, чтобы открыть письмо.</p>
 
-        <input
-          id="passwordInput"
-          type="password"
-          class="gate-input"
-          placeholder="Enter password"
-        />
+        <input id="passwordInput" type="password" class="gate-input" placeholder="Enter password">
         <button class="gate-button" onclick="checkPassword()">Enter</button>
         <p id="passwordError" class="gate-error"></p>
+
       </div>
     </section>
 
