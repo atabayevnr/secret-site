@@ -197,16 +197,13 @@
       </div>
     </section>
   </div>
-
    <script>
 const correctPassword = "2.9.25-13.12.25";
 
 const introLines = [
   "> Daniya",
-  "> ..."
   "> today is your birthday",
-  "> ...",
-  "> So i made this for you"
+  "> so I made this for you"
 ];
 
 let currentLine = 0;
@@ -218,10 +215,8 @@ function checkPassword() {
 
   if (input === correctPassword) {
     errorEl.textContent = "";
-    
     document.getElementById("password-gate").classList.add("hidden");
     document.getElementById("intro-section").classList.remove("hidden");
-    
     startTypewriter();
   } else {
     errorEl.textContent = "Неверный пароль.";
@@ -230,15 +225,11 @@ function checkPassword() {
 
 function startTypewriter() {
   const typewriterEl = document.getElementById("typewriter");
-  
   const fullText = introLines[currentLine];
 
   if (currentChar <= fullText.length) {
     typewriterEl.innerHTML =
-      introLines
-      .slice(0, currentLine)
-      .map(line => line + "<br>")
-      .join("") +
+      introLines.slice(0, currentLine).map(line => line + "<br>").join("") +
       fullText.slice(0, currentChar);
 
     currentChar++;
