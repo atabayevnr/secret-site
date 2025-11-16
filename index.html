@@ -198,8 +198,8 @@
     </section>
   </div>
 
-    <script>
-const correctPassword = "2.9.25-13.12.25"; 
+   <script>
+const correctPassword = "2.9.25-13.12.25";
 
 const introLines = [
   "> Daniya",
@@ -210,25 +210,20 @@ const introLines = [
 let currentLine = 0;
 let currentChar = 0;
 
-function checkPassword() {
-  const input = document.getElementById("passwordInput").value.trim();
-  const errorEl = document.getElementById("passwordError");
+// 🔥 1. Запускаем intro сразу при загрузке страницы
+window.addEventListener("load", () => {
+  document.getElementById("intro-section").classList.remove("hidden");
+  startIntro();
+});
 
-  if (input === correctPassword) {
-    errorEl.textContent = "";
-    
-    document.getElementById("password-gate").classList.add("hidden");
-    document.getElementById("intro-section").classList.remove("hidden");
-
-    startTypewriter();
-  } else {
-    errorEl.textContent = "Неверный пароль.";
-  }
+// 🔥 2. После intro → показываем ввод пароля
+function showPasswordGate() {
+  document.getElementById("intro-section").classList.add("hidden");
+  document.getElementById("password-gate").classList.remove("hidden");
 }
 
-function startTypewriter() {
+function startIntro() {
   const typewriterEl = document.getElementById("typewriter");
-
   const fullText = introLines[currentLine];
 
   if (currentChar <= fullText.length) {
@@ -240,26 +235,41 @@ function startTypewriter() {
       fullText.slice(0, currentChar);
 
     currentChar++;
-    setTimeout(startTypewriter, 70);
+    setTimeout(startIntro, 70);
+
   } else {
     currentLine++;
     currentChar = 0;
 
     if (currentLine < introLines.length) {
-      setTimeout(startTypewriter, 700);
+      setTimeout(startIntro, 700);
     } else {
-      setTimeout(() => {
-        document.getElementById("intro-section").classList.add("hidden");
-        document.getElementById("letter-section").classList.remove("hidden");
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }, 600);
+      // ⏳ задержка и появление ввода пароля
+      setTimeout(showPasswordGate, 700);
     }
   }
 }
 
+// 🔥 3. Проверка пароля остаётся прежней
+function checkPassword() {
+  const input = document.getElementById("passwordInput").value.trim();
+  const errorEl = document.getElementById("passwordError");
+
+  if (input === correctPassword) {
+    errorEl.textContent = "";
+
+    document.getElementById("password-gate").classList.add("hidden");
+    document.getElementById("letter-section").classList.remove("hidden");
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  } else {
+    errorEl.textContent = "Неверный пароль.";
+  }
+}
+
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Enter" && 
-     !document.getElementById("password-gate").classList.contains("hidden")) {
+  if (e.key === "Enter" &&
+      !document.getElementById("password-gate").classList.contains("hidden")) {
     checkPassword();
   }
 });
