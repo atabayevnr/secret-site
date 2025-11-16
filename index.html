@@ -218,8 +218,10 @@ function checkPassword() {
 
   if (input === correctPassword) {
     errorEl.textContent = "";
+    
     document.getElementById("password-gate").classList.add("hidden");
     document.getElementById("intro-section").classList.remove("hidden");
+    
     startTypewriter();
   } else {
     errorEl.textContent = "Неверный пароль.";
@@ -228,11 +230,15 @@ function checkPassword() {
 
 function startTypewriter() {
   const typewriterEl = document.getElementById("typewriter");
+  
   const fullText = introLines[currentLine];
 
   if (currentChar <= fullText.length) {
     typewriterEl.innerHTML =
-      introLines.slice(0, currentLine).map(line => line + "<br>").join("") +
+      introLines
+      .slice(0, currentLine)
+      .map(line => line + "<br>")
+      .join("") +
       fullText.slice(0, currentChar);
 
     currentChar++;
