@@ -18,7 +18,15 @@
 <body>
   <div class="page-wrapper">
 
-    <!-- 1. БЛОК С ПАРОЛЕМ -->
+   <!-- 1. АНИМАЦИЯ ТЕКСТА ПОСЛЕ ПАРОЛЯ -->
+    <section id="intro-section" class="centered-section hidden">
+      <div class="terminal-box">
+        <div id="typewriter" class="typewriter-text"></div>
+        <div class="cursor" id="cursor"></div>
+      </div>
+    </section>
+
+    <!-- 2. БЛОК С ПАРОЛЕМ -->
     <section id="password-gate" class="centered-section">
       <div class="gate-card">
         
@@ -35,14 +43,6 @@
         />
         <button class="gate-button" onclick="checkPassword()">Enter</button>
         <p id="passwordError" class="gate-error"></p>
-      </div>
-    </section>
-
-    <!-- 2. АНИМАЦИЯ ТЕКСТА ПОСЛЕ ПАРОЛЯ -->
-    <section id="intro-section" class="centered-section hidden">
-      <div class="terminal-box">
-        <div id="typewriter" class="typewriter-text"></div>
-        <div class="cursor" id="cursor"></div>
       </div>
     </section>
 
